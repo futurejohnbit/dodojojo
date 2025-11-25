@@ -114,23 +114,27 @@
 
         // --- Rank System Definition ---
         const RANKS = [
+        // --- Rank System Definition ---
+        const RANKS = [
             { title: "列兵", score: 0, color: "bg-gray-500", icon: "v1", category: "士兵" },
-            { title: "上等兵", score: 50, color: "bg-gray-600", icon: "v2", category: "士兵" },
-            { title: "下士", score: 150, color: "bg-green-600", icon: "bar1", category: "士官" },
-            { title: "中士", score: 300, color: "bg-green-700", icon: "bar2", category: "士官" },
-            { title: "上士", score: 500, color: "bg-green-800", icon: "bar3", category: "士官" },
-            { title: "四級軍士長", score: 800, color: "bg-emerald-700", icon: "bar4", category: "士官" },
-            { title: "少尉", score: 1200, color: "bg-blue-500", icon: "star1", category: "尉官" },
-            { title: "中尉", score: 1700, color: "bg-blue-600", icon: "star2", category: "尉官" },
-            { title: "上尉", score: 2300, color: "bg-blue-700", icon: "star3", category: "尉官" },
-            { title: "少校", score: 3000, color: "bg-indigo-600", icon: "lines_star1", category: "校官" },
-            { title: "中校", score: 4000, color: "bg-indigo-700", icon: "lines_star2", category: "校官" },
-            { title: "上校", score: 5500, color: "bg-indigo-800", icon: "lines_star3", category: "校官" },
-            { title: "大校", score: 7500, color: "bg-indigo-900", icon: "lines_star4", category: "校官" },
-            { title: "少將", score: 10000, color: "bg-yellow-600", icon: "wheat_star1", category: "將官" },
-            { title: "中將", score: 15000, color: "bg-yellow-700", icon: "wheat_star2", category: "將官" },
-            { title: "上將", score: 25000, color: "bg-yellow-800", icon: "wheat_star3", category: "將官" },
+            { title: "上等兵", score: 20, color: "bg-gray-600", icon: "v2", category: "士兵" },
+            { title: "下士", score: 60, color: "bg-green-600", icon: "bar1", category: "士官" },
+            { title: "中士", score: 120, color: "bg-green-700", icon: "bar2", category: "士官" },
+            { title: "上士", score: 200, color: "bg-green-800", icon: "bar3", category: "士官" },
+            { title: "軍士長", score: 300, color: "bg-emerald-700", icon: "bar4", category: "士官" },
+            { title: "少尉", score: 450, color: "bg-blue-500", icon: "star1", category: "尉官" },
+            { title: "中尉", score: 600, color: "bg-blue-600", icon: "star2", category: "尉官" },
+            { title: "上尉", score: 750, color: "bg-blue-700", icon: "star3", category: "尉官" },
+            { title: "少校", score: 900, color: "bg-indigo-600", icon: "lines_star1", category: "校官" },
+            { title: "中校", score: 1050, color: "bg-indigo-700", icon: "lines_star2", category: "校官" },
+            { title: "上校", score: 1200, color: "bg-indigo-800", icon: "lines_star3", category: "校官" },
+            { title: "大校", score: 1300, color: "bg-indigo-900", icon: "lines_star4", category: "校官" },
+            { title: "少將", score: 1400, color: "bg-yellow-600", icon: "wheat_star1", category: "將官" },
+            { title: "中將", score: 1450, color: "bg-yellow-700", icon: "wheat_star2", category: "將官" },
+            { title: "上將", score: 1500, color: "bg-yellow-800", icon: "wheat_star3", category: "將官" },
         ];
+
+        const BEHAVIORS = {];
 
         const BEHAVIORS = {
             positive: [
@@ -144,7 +148,7 @@
             negative: [
                 { label: "上課講話", points: -5, icon: "🤫" },
                 { label: "作業缺交", points: -10, icon: "❌" },
-                { label: "遲到", points: -5, icon: "⏰" },
+                { label: "出位", points: -5, icon: "🚶‍♂️" },
                 { label: "干擾課堂", points: -15, icon: "🚫" },
             ]
         };
