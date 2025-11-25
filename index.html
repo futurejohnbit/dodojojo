@@ -109,6 +109,8 @@
         }
 
         const APP_ID = 'honor-legion-v1';
+        // 使用固定的班級 ID，讓所有設備都能讀取同一份資料
+        const CLASS_ID = 'shared-class-01';
 
         // --- Rank System Definition ---
         const RANKS = [
@@ -288,10 +290,11 @@
             }, []);
 
             useEffect(() => {
+                // 等待使用者登入 (即使是匿名) 以確保可以連線
                 if (!user || !isConfigured) return;
                 
-                // Using a unique path per user so data doesn't conflict if multiple teachers use it
-                const studentsRef = collection(db, 'apps', APP_ID, 'teachers', user.uid, 'students');
+                // 修改為共用路徑：不再使用 user.uid，而是使用固定的 CLASS_ID
+                const studentsRef = collection(db, 'apps', APP_ID, 'classes', CLASS_ID, 'students');
                 const q = query(studentsRef); 
                 
                 const unsubStudents = onSnapshot(q, (snapshot) => {
@@ -319,7 +322,8 @@
                 if (!newStudentName.trim() || !user) return;
                 
                 try {
-                    const studentsRef = collection(db, 'apps', APP_ID, 'teachers', user.uid, 'students');
+                    // 修改為共用路徑
+                    const studentsRef = collection(db, 'apps', APP_ID, 'classes', CLASS_ID, 'students');
                     await addDoc(studentsRef, {
                         name: newStudentName,
                         score: 0,
@@ -345,7 +349,8 @@
                 const newScore = Math.max(0, selectedStudent.score + amount);
                 
                 try {
-                    const studentRef = doc(db, 'apps', APP_ID, 'teachers', user.uid, 'students', selectedStudent.id);
+                    // 修改為共用路徑
+                    const studentRef = doc(db, 'apps', APP_ID, 'classes', CLASS_ID, 'students', selectedStudent.id);
                     await updateDoc(studentRef, {
                         score: newScore,
                         lastAction: reason,
@@ -364,7 +369,8 @@
             const handleDeleteStudent = async (studentId) => {
                 if(!confirm("確定要將此士兵除名嗎？此操作無法復原。")) return;
                 try {
-                    const studentRef = doc(db, 'apps', APP_ID, 'teachers', user.uid, 'students', studentId);
+                    // 修改為共用路徑
+                    const studentRef = doc(db, 'apps', APP_ID, 'classes', CLASS_ID, 'students', studentId);
                     await deleteDoc(studentRef);
                     setSelectedStudent(null);
                 } catch (error) {
