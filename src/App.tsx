@@ -187,7 +187,7 @@ function App() {
     // Modal States
     const [selectedStudent, setSelectedStudent] = useState<any | null>(null);
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
-    // const [isRankGuideOpen, setIsRankGuideOpen] = useState(false);
+    const [isRankGuideOpen, setIsRankGuideOpen] = useState(false);
     const [isBulkMode, setIsBulkMode] = useState(false);
     const [selectedIds, setSelectedIds] = useState<string[]>([]);
     const [isBulkActionModalOpen, setIsBulkActionModalOpen] = useState(false);
@@ -447,6 +447,12 @@ function App() {
 
                 <div className="p-4 bg-slate-900 border-t border-slate-700">
                     <button 
+                        onClick={() => setIsRankGuideOpen(true)}
+                        className="w-full bg-slate-700 hover:bg-slate-600 text-slate-200 p-3 rounded-xl flex items-center justify-center transition-all font-bold mb-3 shadow-lg"
+                    >
+                        <BookOpen className="mr-2" size={20} /> 軍銜手冊
+                    </button>
+                    <button 
                         onClick={() => setIsAddModalOpen(true)}
                         className="w-full bg-indigo-600 hover:bg-indigo-500 text-white p-3 rounded-xl flex items-center justify-center transition-all font-bold shadow-lg shadow-indigo-900/50"
                     >
@@ -568,6 +574,39 @@ function App() {
                     })}
                 </div>
             </main>
+
+            {/* Rank Guide Modal */}
+            {isRankGuideOpen && (
+                <div className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4">
+                    <div className="bg-white rounded-2xl w-full max-w-4xl max-h-[90vh] shadow-2xl flex flex-col animate-in zoom-in-95">
+                        <div className="p-6 border-b border-slate-100 flex justify-between items-center bg-slate-900 text-white rounded-t-2xl">
+                            <h2 className="text-xl font-bold flex items-center">
+                            <BookOpen className="mr-3 text-yellow-500"/> 
+                            軍銜晉升手冊 (1500分制)
+                            </h2>
+                            <button onClick={() => setIsRankGuideOpen(false)} className="p-2 hover:bg-slate-700 rounded-full">
+                            <X size={24} />
+                            </button>
+                        </div>
+                        <div className="p-6 overflow-y-auto bg-slate-50">
+                            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                            {RANKS.map((rank, i) => (
+                                <div key={i} className="bg-white p-3 rounded-xl border border-slate-200 flex items-center space-x-3 hover:shadow-md transition-shadow">
+                                    <div className="w-12 h-12 shrink-0">
+                                    <RankBadge rankData={rank} className="w-12 h-12" />
+                                    </div>
+                                    <div>
+                                    <div className="text-xs text-slate-400 font-bold mb-0.5">{rank.category}</div>
+                                    <div className="font-bold text-slate-800">{rank.title}</div>
+                                    <div className="text-xs text-indigo-600 font-mono font-bold">{rank.score} 積分</div>
+                                    </div>
+                                </div>
+                            ))}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Add Student Modal */}
             {isAddModalOpen && (
